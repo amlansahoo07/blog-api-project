@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> Uncomment if you need to use Axios in the frontend -->
+</head>
+
+<body>
+  <div class="container">
+    <!-- Main heading of the blog -->
+    <h1>My Blog</h1>
+    <!-- Button to create a new post -->
+    <a id="newPostBtn" href="/new">New Post</a>
+    <!-- List of blog posts -->
+    <ul id="postsList">
+      <% posts.forEach(post => { %>
+        <li>
+          <!-- Displaying the title of the post -->
+          <h2>
+            <%= post.title %>
+          </h2>
+          <!-- Displaying the date of the post -->
+          <small>
+            <%= post.date %>
+          </small>
+          <!-- Displaying the content of the post -->
+          <p>
+            <%= post.content %>
+          </p>
+          <!-- Displaying the author of the post -->
+          <small>By: <%= post.author %> </small>
+          <!-- Link to edit the post -->
+          <a class="edit" href="/edit/<%= post.id %>">Edit</a>
+          <!-- Link to delete the post -->
+          <a class="delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+</body>
+
+</html>

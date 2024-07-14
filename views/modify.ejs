@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= heading %></title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Dynamic heading for the form, either 'New Post' or 'Edit Post' -->
+    <h1>
+      <%= heading %>
+    </h1>
+
+    <% if (locals.post) { %>
+      <!-- Form for editing an existing post -->
+      <form id="editForm" method="post" action="/api/posts/<%=post.id%>">
+        <!-- Input field for the title with the existing post title as value -->
+        <input type="text" name="title" value="<%=post.title %>">
+        <!-- Textarea for the content with the existing post content as value -->
+        <textarea name="content" rows="10"><%=post.content %></textarea>
+        <!-- Input field for the author with the existing post author as value -->
+        <input type="text" name="author" value="<%=post.author %>">
+        <!-- Submit button with dynamic text 'Update Post' -->
+        <button class="full-width" type="submit">
+          <%= submit %>
+        </button>
+      </form>
+    <% } else { %>
+      <!-- Form for creating a new post -->
+      <form id="newPostForm" method="post" action="/api/posts">
+        <!-- Input field for the title with placeholder text -->
+        <input type="text" name="title" placeholder="Title" required>
+        <!-- Textarea for the content with placeholder text -->
+        <textarea name="content" placeholder="Content" required rows="10"></textarea>
+        <!-- Input field for the author with placeholder text -->
+        <input type="text" name="author" placeholder="Author" required>
+        <!-- Submit button with dynamic text 'Create Post' -->
+        <button class="full-width" type="submit">
+          <%= submit %>
+        </button>
+      </form>
+    <% } %>
+
+  </div>
+</body>
+
+</html>
